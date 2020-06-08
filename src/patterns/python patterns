@@ -1,0 +1,3 @@
+[a-z][A-Z],Camelcase detected
+r",Incorrect usage of a string literal
+\w={1}\w,Incorrect spacing around variable declaration
