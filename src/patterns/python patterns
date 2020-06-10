@@ -1,3 +1,4 @@
 ([a-z]|[a-z]+)[A-Z]([a-z]|[A-Z])+(\s+|)=,Camelcase detected
 r",Incorrect usage of a string literal
 \w={1}\w,Incorrect spacing around variable declaration
+(.*\/)+,Directory path uses forward-slashes
