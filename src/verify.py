@@ -16,7 +16,7 @@ for pattern in pattern_buffer.split("\n"):
     matches = re.findall(expression, buffer)
 
     if not (len(matches) == 0):
-        print(warning + ", instances: " + str(len(matches)))
+        print(warning + ", instances: " + str(len(matches)) + " " + str(matches))        
         issues += 1
-        
+
 print("Done verifying code sample. " + str(issues) + " issues found.")
