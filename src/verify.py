@@ -10,6 +10,7 @@ pattern_buffer = pattern_file.read()
 
 issues = 0
 
+# Regex Pattern Check
 for pattern in pattern_buffer.split("\n"):        
     expression, warning = pattern.split(",")
     matches = re.findall(expression, buffer)
@@ -17,5 +18,5 @@ for pattern in pattern_buffer.split("\n"):
     if not (len(matches) == 0):
         print(warning + ", instances: " + str(len(matches)))
         issues += 1
-
+        
 print("Done verifying code sample. " + str(issues) + " issues found.")
