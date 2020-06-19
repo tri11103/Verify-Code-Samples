@@ -1,8 +1,20 @@
 import sys
+from pylint.lint import Run
+
+args = sys.argv
+json = Run([
+        args[1], 
+        "--output-format=json"
+    ],)
+
+print(json)
+
+'''
+
 import re
 
 args = sys.argv
-file = open(args[1], "r")
+
 buffer = file.read()
 
 pattern_file = open("../src/patterns/python patterns", "r")
@@ -20,3 +32,4 @@ for pattern in pattern_buffer.split("\n"):
         issues += 1
 
 print("Done verifying code sample. " + str(issues) + " issues found.")
+'''
