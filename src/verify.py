@@ -7,7 +7,7 @@ from pylint.lint import Run
 
 args = sys.argv
 try:
-    json = subprocess.check_output('python -m pylint "%s" --output-format=json'%args[1], stderr=subprocess.STDOUT, shell=True)
+    json = subprocess.check_output('python -m pylint "%s" --rcfile=../src/pylint.config --output-format=json'%args[1], stderr=subprocess.STDOUT, shell=True).decode()
 except subprocess.CalledProcessError as e:
     json = e.output.decode()
 
@@ -15,9 +15,6 @@ file = open("../tmp/data.js", "w")
 file.write("const json = " + json)
 
 webbrowser.open_new(str(pathlib.Path(__file__).parent.absolute().as_uri()) + str("/index.html"))
-
-
-
 
 '''
 
