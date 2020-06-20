@@ -1,13 +1,23 @@
 import sys
+import pathlib
+import webbrowser
+import subprocess
+import shlex
 from pylint.lint import Run
 
 args = sys.argv
-json = Run([
-        args[1], 
-        "--output-format=json"
-    ],)
+try:
+    json = subprocess.check_output('python -m pylint "%s" --output-format=json'%args[1], stderr=subprocess.STDOUT, shell=True)
+except subprocess.CalledProcessError as e:
+    json = e.output.decode()
 
-print(json)
+file = open("../tmp/data.js", "w")
+file.write("const json = " + json)
+
+webbrowser.open_new(str(pathlib.Path(__file__).parent.absolute().as_uri()) + str("/index.html"))
+
+
+
 
 '''
 
