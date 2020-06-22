@@ -10,5 +10,4 @@ start "" "https://python.org/downloads/windows"
 :: @todo(tdamron): Rather than install Pylint every time the program is run, it is better to check if it's installed once.
 python -m pip install pylint 
 python "../src/verify.py" %1
-
-@pause
+start "" "../src/index.html"

@@ -11,32 +11,16 @@ try:
 except subprocess.CalledProcessError as e:
     json = e.output.decode()
 
-file = open("../tmp/data.js", "w")
-file.write("const json = " + json)
 
-webbrowser.open_new(str(pathlib.Path(__file__).parent.absolute().as_uri()) + str("/index.html"))
 
-'''
+data_file = open("../tmp/data.js", "w")
+data_file.write("const json = " + json)
+data_file.close()
 
-import re
+data_file = open("../tmp/data.js", "a+")
+python_file = open(args[1], "r")
+python_buffer = python_file.read()
+data_file.write("const python = `" + python_buffer + "`")
+data_file.close()
 
-args = sys.argv
-
-buffer = file.read()
-
-pattern_file = open("../src/patterns/python patterns", "r")
-pattern_buffer = pattern_file.read()
-
-issues = 0
-
-# Regex Pattern Check
-for pattern in pattern_buffer.split("\n"):        
-    expression, warning = pattern.split(",")
-    matches = re.findall(expression, buffer)
-
-    if not (len(matches) == 0):
-        print(warning + ", instances: " + str(len(matches)) + " " + str(matches))        
-        issues += 1
-
-print("Done verifying code sample. " + str(issues) + " issues found.")
-'''
+# webbrowser.open_new(str(pathlib.Path(__file__).parent.absolute().as_uri()) + str("/index.html"))
