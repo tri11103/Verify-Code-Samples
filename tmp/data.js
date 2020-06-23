@@ -1,33 +1,22 @@
 const json = [
     {
         "type": "convention",
-        "module": "export_f_a_a18_b_to_shapefile-9",
-        "obj": "",
-        "line": 1,
-        "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\export_f_a_a18_b_to_shapefile-9.py",
-        "symbol": "invalid-name",
-        "message": "Module name \"export_f_a_a18_b_to_shapefile-9\" doesn't conform to snake_case naming style",
-        "message-id": "C0103"
-    },
-    {
-        "type": "convention",
-        "module": "export_f_a_a18_b_to_shapefile-9",
+        "module": "export_f_a_a18_b_to_shapefile",
         "obj": "",
         "line": 10,
         "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\export_f_a_a18_b_to_shapefile-9.py",
+        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\export_f_a_a18_b_to_shapefile.py",
         "symbol": "invalid-name",
         "message": "Constant name \"inWork\" doesn't conform to UPPER_CASE naming style",
         "message-id": "C0103"
     },
     {
         "type": "convention",
-        "module": "export_f_a_a18_b_to_shapefile-9",
+        "module": "export_f_a_a18_b_to_shapefile",
         "obj": "",
         "line": 11,
         "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\export_f_a_a18_b_to_shapefile-9.py",
+        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\export_f_a_a18_b_to_shapefile.py",
         "symbol": "invalid-name",
         "message": "Constant name \"outLocation\" doesn't conform to UPPER_CASE naming style",
         "message-id": "C0103"
