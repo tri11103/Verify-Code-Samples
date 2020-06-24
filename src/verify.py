@@ -33,12 +33,11 @@ def data_export():
     data_file.write("const python = `" + python_buffer + "`")
     data_file.close()
 
-
 lint()
 data_export()
 
-chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-firefox_path = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+chrome_path = r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+firefox_path = r'C:\Program Files\Mozilla Firefox\firefox.exe'
 try:
     webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
     webbrowser.get('chrome').open('file://' + str(pathlib.Path(__file__).parent.absolute()) + "/index.html")
