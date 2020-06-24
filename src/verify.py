@@ -14,10 +14,7 @@ json = ""
 python_buffer = ""
 
 
-def lint():
-    """
-    Function is responsible for running pylint on a file.    
-    """    
+def lint():   
     global json    
     try:
         json = subprocess.check_output('python -m pylint "%s" --rcfile=../src/pylint.config --output-format=json'%args[1], stderr=subprocess.STDOUT, shell=True).decode()
@@ -39,7 +36,16 @@ def data_export():
 
 lint()
 data_export()
-webbrowser.open_new(str(pathlib.Path(__file__).parent.absolute().as_uri()) + str("/index.html"))
+
+chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+firefox_path = 'C:\Program Files\Mozilla Firefox\firefox.exe'
+try:
+    webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+    webbrowser.get('chrome').open('file://' + str(pathlib.Path(__file__).parent.absolute()) + "/index.html")
+except:
+    print("Error: Chrome not found. Trying Firefox.")
+    webbrowser.register('firefox', None, webbrowser.BackgroundBrowser(firefox_path))
+    webbrowser.get('firefox').open('file://' + str(pathlib.Path(__file__).parent.absolute()) + "/index.html")
 
 class Server(socketserver.BaseRequestHandler):
     def handle(self):
