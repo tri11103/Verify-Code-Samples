@@ -25,6 +25,7 @@ In addition to detecting these issues, this tool can also correct many issues au
 ## Check a code sample 
 1. Open a file explorer window and browse to the code sample you want to verify.
 2. Drag-and-drop the code sample file on to the **Verify Code Sample - Shortcut.lnk** on your Desktop.
+- code sample file must be .py format.
 3. A web browser window appears showing all issues with the code sample.
 - You can fix issues with your code sample by clicking the **Fix now** button in the web browser. _Please note:_ this will overwrite the existing file. This action can not be undone. 
 
