@@ -31,66 +31,11 @@ $(document).ready (() => {
 
 
     $("#fix-now").click(() => {
-        function download(filename, text) {
-            var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-            element.setAttribute('download', filename);
-          
-            element.style.display = 'none';
-            document.body.appendChild(element);
-          
-            element.click();
-          
-            document.body.removeChild(element);
-        }
-
         $("#loading-animation").show();
-        
-        var lines = python.split("\n")
-
-        var fileName = "";
-        for (var i = 0; i < json.length; i++) {
-            if (fileName == "") {
-                fileName = json[i].path.substr(json[i].path.lastIndexOf("\\")+1, json[i].length);
-            }
-
-            if (json[i].message.includes("Exactly one space required after comma")) {                
-                var res = lines[Number(json[i].line) - 1].replaceAll(/,\s+/g, ", ")
-                res = lines[Number(json[i].line) - 1].replaceAll(/(,(?=\S)|:)/g, ", ")
-                lines[Number(json[i].line) - 1] = res;                   
-            } else if (json[i].message.includes("doesn't conform to UPPER_CASE")) {        
-                var variable = json[i].message.substr(json[i].message.indexOf("\""), json[i].message.lastIndexOf("\""));
-                var res = "";
-                for (var index = 0; index < variable.length; index++) {
-                    if (variable[index].match(/[A-Z]/) && index != 0) {
-                        res  += '_' + variable[index].toLowerCase();
-                    } else if (variable[index].match(/[A-Z]/) && index == 0) {
-                        res  += variable[index].toLowerCase();
-                    } else {
-                        res += variable[index];
-                    }
-
-                    for (var line in lines) {
-                        line.replace(variable, res);
-                    }
-                }                              
-            } else if (json[i].message.includes("doesn't conform to snake_case naming style")) {
-                var res = ""
-                for (var index = 0; index < fileName.length; index++) {
-                    if (fileName[index].match(/[A-Z]/) && index != 0) {
-                        res  += '_' + fileName[index].toLowerCase();
-                    } else if (fileName[index].match(/[A-Z]/) && index == 0) {
-                        res  += fileName[index].toLowerCase();
-                    } else {
-                        res += fileName[index];
-                    }
-                }                    
-                fileName = res;
-            }
+        var prevWindow = window;
+        var newWindow = open("http://127.0.0.1:5656/");
+        if (newWindow) {
+            window.open(prevWindow.location);
         }
-        
-        download(fileName, lines.join("\n"));        
-        
-        $("#loading-animation").hide();        
     });
 });
