@@ -19,8 +19,9 @@ In addition to detecting these issues, this tool can also correct many issues au
 ## Installation
 1. Clone or download this repository to your machine.
 2. A .zip file appears in your **Downloads** folder. Extract the .zip folder to a folder of your choosing.
-3. Open the folder you extracted. Locate the **/bin** directory.
-4. Open the **/bin** directory. Drag-and-drop the **Verify Code Sample - Shortcut.lnk** to your Desktop.
+3. Open the folder you extracted. Browse to the **/bin** directory.
+4. Right click the **Verify Code Sample** file and click **Create shortcut**.
+5. Drag and drop the **Verify Code Sample - Shortcut** file to your Desktop.
 
 ## Check a code sample 
 1. Open a file explorer window and browse to the code sample you want to verify.
