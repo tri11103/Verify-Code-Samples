@@ -58,11 +58,7 @@ class Server(socketserver.BaseRequestHandler):
         data_export()     
         open_browser()
         self.request.send("""
-        <html>
-        <body>
         <script>close();</script>
-        </body>
-        </html>
         """.encode())
 
 with socketserver.TCPServer(("", 5656), Server) as httpd:

@@ -29,6 +29,7 @@ $(document).ready (() => {
 
     $("#loading-animation").hide();
 
+
     $("#fix-now").click(() => {
         $("#loading-animation").show();
         jQuery.get("http://127.0.0.1:5656/", (res) => {

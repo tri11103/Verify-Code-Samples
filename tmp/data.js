@@ -1,67 +1,56 @@
 const json = [
     {
         "type": "convention",
-        "module": "buildingoffsets",
+        "module": "MigrateProductLibraryInfo_example",
         "obj": "",
-        "line": 14,
+        "line": 1,
         "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\py\\defensemapping\\buildingoffsets.py",
-        "symbol": "line-too-long",
-        "message": "Line too long (449/240)",
-        "message-id": "C0301"
+        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\aero\\MigrateProductLibraryInfo_example.py",
+        "symbol": "invalid-name",
+        "message": "Module name \"MigrateProductLibraryInfo_example\" doesn't conform to snake_case naming style",
+        "message-id": "C0103"
     },
     {
         "type": "convention",
-        "module": "buildingoffsets",
+        "module": "MigrateProductLibraryInfo_example",
         "obj": "",
         "line": 12,
         "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\py\\defensemapping\\buildingoffsets.py",
+        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\aero\\MigrateProductLibraryInfo_example.py",
         "symbol": "invalid-name",
-        "message": "Constant name \"productFile\" doesn't conform to UPPER_CASE naming style",
+        "message": "Constant name \"Product_Library\" doesn't conform to UPPER_CASE naming style",
         "message-id": "C0103"
     },
     {
         "type": "convention",
-        "module": "buildingoffsets",
+        "module": "MigrateProductLibraryInfo_example",
         "obj": "",
         "line": 13,
         "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\py\\defensemapping\\buildingoffsets.py",
+        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\aero\\MigrateProductLibraryInfo_example.py",
         "symbol": "invalid-name",
-        "message": "Constant name \"dataset\" doesn't conform to UPPER_CASE naming style",
-        "message-id": "C0103"
-    },
-    {
-        "type": "convention",
-        "module": "buildingoffsets",
-        "obj": "",
-        "line": 14,
-        "column": 0,
-        "path": "C:\\Users\\tri11103\\OneDrive - Esri\\Desktop\\py\\defensemapping\\buildingoffsets.py",
-        "symbol": "invalid-name",
-        "message": "Constant name \"coordsys\" doesn't conform to UPPER_CASE naming style",
+        "message": "Constant name \"Target_Workspace\" doesn't conform to UPPER_CASE naming style",
         "message-id": "C0103"
     }
 ]
-const python = `# Name: BuildingOffsets_Example.py
-# Description: Executes Building Offsets Defense Mapping tool using an input XML specification file.
-# Requirements: ArcGIS Defense Mapping
+const python = `# Name: MigrateProductLibraryInfo_example.py
+# Description: migrate AOI and extraction data from product library into a geodatabase with ArcGIS Aviation Charting in Pro based AOI and extraction table
 
+# Import arcpyproduction
 import arcpy
+import arcpyproduction
 
-# check out a defense license & set gp environment
-arcpy.CheckOutExtension("defense")
-arcpy.env.workspace = "c:/data/mgcp.gdb"
+# Check out Aviation license
+arcpy.CheckOutExtension("Aeronautical")
 
-# variables for tool parameters
-productFile = "c:/data/defense_carto_spec.xml"
-dataset = "MGCP"
-coordsys = "PROJCS['GCS WGS 1984 UTM Zone 11N (Calculated)',GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-117.0],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0.0],UNIT['Meter',1.0]];IsHighPrecision"
+# Set variables
+Product_Library = r'c:\data\PL.sde'
+Target_Workspace = r'c:\data\Database.sde'
 
-# execute the tool
-arcpy.BuildingOffsets_defense(productFile, dataset, coordsys)
+# Execute MigrateProductLibrary
+arcpyproduction.aviation.charting.MigrateProductLibraryInfo(
+    Product_Library, Target_Workspace)
 
-# check in the defense license
-arcpy.CheckInExtension("defense")
+# Check in Aviation license
+arcpy.CheckInExtension("Aeronautical")
 `
