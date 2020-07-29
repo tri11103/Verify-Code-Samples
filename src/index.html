@@ -8,6 +8,13 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>        
     <script type="text/javascript" src="../tmp/data.js"></script>
     <script type="text/javascript" src="./dashboard.js"></script>
+    <style>
+	.truncate {
+  		white-space: nowrap;
+  		overflow: hidden;
+  		text-overflow: ellipsis;
+	}
+    </style>
 </head> 
 <body>
 
@@ -33,13 +40,8 @@
         <div class="column-3">
             <aside class="side-nav" aria-role="complementary">
                 <h4 class="side-nav-title">File Names</h4>
-                <nav role="navigation" aria-labelledby="sidenav">
-                    <a href="#" class="side-nav-link">File Name</a>
-                    <a href="#" class="side-nav-link">File Name</a>
-                    <a href="#" class="side-nav-link">File Name</a>
-                    <a href="#" class="side-nav-link">File Name</a>
-                    <a href="#" class="side-nav-link">File Name</a>
-                </nav>
+                <nav class="toc" role="navigation" aria-labelledby="sidenav"> 
+		</nav>
             </aside>        
         </div>
         <div class="column-17 center-column">            
