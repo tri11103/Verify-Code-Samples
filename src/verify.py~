@@ -27,7 +27,8 @@ def lint():
             for f in os.listdir(args[1]):
                 pylint_args += "\"" + args[1] + "\\" + f + "\" "
                 file_count += 1
-        json = subprocess.check_output('python -m pylint -j %d %s --output-format=json'%(file_count, pylint_args), stderr=subprocess.STDOUT, shell=True).decode()
+        
+        json = subprocess.check_output('python -m pylint -j %d %s --rcfile=../src/pylint.config --output-format=json'%(file_count, pylint_args), stderr=subprocess.STDOUT, shell=True).decode()
     except subprocess.CalledProcessError as e:
         json = e.output.decode()
 
@@ -40,12 +41,13 @@ def data_export():
     data_file = open("../tmp/data.js", "a+")
     data_file.write("var python = [];\n")
     try:
+        # Single File
         python_file = open(args[1], "r")
         python_buffer.append(python_file.read())
         data_file.write("python.push(`" + python_buffer[0] + "`);\n")
         data_file.close()
     except PermissionError as e:
-        # Exception -> "File not found" or "Permission Denied", meaning this is a directory
+        # Directory 
         file_count = 0
         python_str_list = "var python = []\n;"
         for f in os.listdir(args[1]):
@@ -72,10 +74,12 @@ def open_browser():
 def rewrite_file():
     global python_buffer, args
     try:
+        # Single File
         python_file = open(args[1], "w")
         python_file.write(python_buffer[0])
         python_file.close()
     except Exception as e:
+        # Directory
         file_count = 0
         for f in os.listdir(args[1]): 
             python_file = open(args[1] + "\\" + f, "w")
@@ -90,8 +94,10 @@ open_browser()
 class Server(socketserver.BaseRequestHandler):
     def handle(self):
         global python_buffer, args
-        for py_file in python_buffer:
-            py_file = autopep8.fix_code(py_file)
+        
+        for i in range(len(python_buffer)):
+            python_buffer[i] = autopep8(python_buffer[i])
+        
         rewrite_file()
         lint()
         data_export()     
