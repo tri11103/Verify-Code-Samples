@@ -27,7 +27,7 @@ def lint():
             for f in os.listdir(args[1]):
                 pylint_args += "\"" + args[1] + "\\" + f + "\" "
                 file_count += 1
-        json = subprocess.check_output('python -m pylint -j %d %s --output-format=json'%(file_count, pylint_args), stderr=subprocess.STDOUT, shell=True).decode()
+        json = subprocess.check_output('python -m pylint -j %d %s --rcfile=../src/pylint.config --output-format=json'%(file_count, pylint_args), stderr=subprocess.STDOUT, shell=True).decode()
     except subprocess.CalledProcessError as e:
         json = e.output.decode()
 

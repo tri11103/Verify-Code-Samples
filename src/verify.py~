@@ -20,14 +20,13 @@ def lint():
         try:
             f = open(args[1], "r")
             f.close()
-            pylint_args = args[1]
+            pylint_args = "\"" + args[1] + "\""
             file_count = 1
         except Exception as e:
             pylint_args = ""
             for f in os.listdir(args[1]):
                 pylint_args += "\"" + args[1] + "\\" + f + "\" "
                 file_count += 1
-        print('python -m pylint -j %d %s --output-format=json'%(file_count, pylint_args))
         json = subprocess.check_output('python -m pylint -j %d %s --output-format=json'%(file_count, pylint_args), stderr=subprocess.STDOUT, shell=True).decode()
     except subprocess.CalledProcessError as e:
         json = e.output.decode()
