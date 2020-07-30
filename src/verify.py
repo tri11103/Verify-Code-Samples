@@ -101,14 +101,7 @@ class Server(socketserver.BaseRequestHandler):
         rewrite_file()
         lint()
         data_export()     
-        open_browser()
-        self.request.send("""
-        <html>
-        <body>
-        <script>close();</script>
-        </body>
-        </html>
-        """.encode())
+        self.request.sendall("{success: 1}".encode())
 
 with socketserver.TCPServer(("", 5656), Server) as httpd:
     httpd.serve_forever()

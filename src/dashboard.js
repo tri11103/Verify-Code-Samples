@@ -53,9 +53,13 @@ $(document).ready (() => {
 
     $(".fix-now").click(() => {
         $("#loading-animation").show();
-        jQuery.get("http://127.0.0.1:5656/", (res) => {
-		// @todo(tdamron): This doesn't close the previous window.
-		window.close();
+        jQuery.ajax({
+		type: "GET",
+		url: "http://127.0.0.1:5656/",
+		dataType: "jsonp",
+		complete: function (data) {
+			location.reload();
+		}
 	});
     });
 });
