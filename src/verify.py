@@ -44,7 +44,7 @@ def data_export():
         # Single File
         python_file = open(args[1], "r")
         python_buffer.append(python_file.read())
-        data_file.write("python.push(`" + python_buffer[0] + "`);\n")
+        data_file.write("python.push(String.raw`" + python_buffer[0] + "`);\n")
         data_file.close()
     except PermissionError as e:
         # Directory 
