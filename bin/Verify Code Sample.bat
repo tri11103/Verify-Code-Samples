@@ -12,4 +12,3 @@ start "" "https://python.org/downloads/windows"
 python -m pip install pylint 
 python -m pip install autopep8
 python "../src/verify.py" %1 
-@pause
